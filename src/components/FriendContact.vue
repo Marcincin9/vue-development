@@ -5,33 +5,43 @@
         <ul v-if="detailsAreVisible">
             <li><strong>Phone:</strong>{{phoneNumber}}</li>
             <li><strong>Email:</strong>{{emailAddress}}</li>
+
         </ul>
+        <button @click="$emit('delete', id)">Delete</button>
     </li>
 </template>
 <script>
 export default {
-    props: [
-        'name',
-        'phoneNumber',
-        'emailAddress'
-    ],
+    // props: ['name','phoneNumber','emailAddress'],
+    props: {
+        id: {
+            type: String,
+            require: true
+        },
+        name: {
+            type: String,
+            require: true
+        },
+        phoneNumber: {
+            type: String,
+            require: true
+        },
+         emailAddress: {
+            type: String,
+            require: true
+        },
+    },
+    emits:['delete'],
   data(){
       return {
           detailsAreVisible: false,
-           friend:{
-                id: 'robert',
-                name: 'Robert Naboj',
-                phone: '0748 000 111',
-                email: 'robertn@localhost.com'
-
-            },
-      };
+     };
   },
   methods: {
       toggleDetails(){
           this.detailsAreVisible = !this.detailsAreVisible;
         
         }
-  }
+    },
 };
 </script>

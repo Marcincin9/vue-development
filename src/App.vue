@@ -11,7 +11,8 @@
                 :id="friend.id"
                 :name="friend.name"
                 :phone-number="friend.phone"
-                :email-address="friend.email">
+                :email-address="friend.email"
+                @delete="deleteContact">
            </friend-contact>
         </ul>
     </section>
@@ -48,6 +49,9 @@ export default {
         email: email
       };
       this.friends.push(newFriendContact);
+    },
+    deleteContact(friendId){
+        this.friends = this.friends.filter((friend) => friend.id !== friendId);
     }
   },
 };
